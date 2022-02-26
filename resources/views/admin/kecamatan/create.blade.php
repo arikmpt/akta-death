@@ -1,5 +1,5 @@
 @extends('template_backend.home')
-@section('sub-judul','Edit baratkel')
+@section('sub-judul','Tambah Data Kecamatan')
 @section('content')
 
 	@if(count($errors)>0)
@@ -17,18 +17,17 @@
 	@endif
 
 
-<form action="{{ route('baratkel.update', $baratkel->id) }}" method="POST">
+<form action="{{ route('kecamatan.store') }}" method="POST" enctype="multipart/form-data">
 @csrf
-@method('patch')
+
 <div class="form-group">
-    <label>baratkel</label>
-    <input type="text" class="form-control" name="baratkel" value="{{ $baratkel->baratkel }}" >
+    <label>Nama</label>
+    <input type="text" class="form-control" name="nama">
 </div>
 
- <div class="form-group">
-    <button class="btn btn-primary btn-block">Update</button>
-</div>
 
+<div class="form-group">
+    <button class="btn btn-primary btn-block" type="submit">Simpan </button>
+</div>
 </form>
-
-@endsection
+@endsection  

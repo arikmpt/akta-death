@@ -11,23 +11,10 @@
 
           <ul class="sidebar-menu">
               <li class="nav-item">
-                <br></br>
-                <a href="{{ route('datakematian.index') }}" class="nav-link"><i class="fas fa-columns"></i> <span>Data kematian</span></a>
-                <ul class="dropdown-menu">
-                  
-                  <a href="{{ route('baratkecamatan.index')}}" class="nav-link"><i class="fas fa-list"></i> <span>Kecamatan barat</span></a>
-                  <a href="{{ route('Utarakecamatan.index')}}" class="nav-link"><i class="fas fa-list"></i> <span>Kecamatan utara</span></a>
-                  <a href="{{ route('Timurkecamatan.index')}}" class="nav-link"><i class="fas fa-list"></i> <span>Kecamatan timur</span></a>
-                  <a href="{{ route('latinakecamatan.index')}}" class="nav-link"><i class="fas fa-list"></i> <span>Kecamatan latina</span></a>
-                  <a href="{{ route('selatankecamatan.index')}}" class="nav-link"><i class="fas fa-list"></i> <span>Kecamatan selatan</span></a>
-
-
-
-                       </ul>
-
+                <a href="{{ route('kecamatan.index') }}" class="nav-link"><i class="fas fa-columns"></i> <span>Data Kecamatan</span></a>
+                <a href="{{ route('datakematian.index') }}" class="nav-link"><i class="fas fa-columns"></i> <span>Data Kematian</span></a>
               </li>
-                </ul>
-              </li>
+          </ul>
             </div>
         </aside>
       </div>
