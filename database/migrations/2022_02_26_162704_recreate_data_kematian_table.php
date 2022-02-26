@@ -13,7 +13,7 @@ class RecreateDataKematianTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('kecamatans')) {
+        if (!Schema::hasTable('kecamatan')) {
             Schema::create('kecamatan', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->string('nama')->nullable();
@@ -21,7 +21,7 @@ class RecreateDataKematianTable extends Migration
             });
         }
 
-        if (!Schema::hasTable('kelurahans')) {
+        if (!Schema::hasTable('kelurahan')) {
             Schema::create('kelurahan', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->string('nama')->nullable();

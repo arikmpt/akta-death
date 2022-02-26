@@ -12,6 +12,7 @@
           <ul class="sidebar-menu">
               <li class="nav-item">
                 <a href="{{ route('kecamatan.index') }}" class="nav-link"><i class="fas fa-columns"></i> <span>Data Kecamatan</span></a>
+                <a href="{{ route('kelurahan.index') }}" class="nav-link"><i class="fas fa-columns"></i> <span>Data Kelurahan</span></a>
                 <a href="{{ route('datakematian.index') }}" class="nav-link"><i class="fas fa-columns"></i> <span>Data Kematian</span></a>
               </li>
           </ul>

@@ -21,6 +21,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('/kecamatan','KecamatanController');
     Route::any('/kecamatan-search','KecamatanController@search')->name('kecamatan.search');
+    Route::resource('/kelurahan','KelurahanController');
+    Route::any('/kelurahan-search','KelurahanController@search')->name('kelurahan.search');
+
     Route::resource('/datakematian','DatakematianController');
 
 });
