@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Datakematian;
+use App\Kecamatan;
+use App\Kelurahan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
@@ -71,8 +73,20 @@ public function cetaksuarti($id)
     public function create()
     {
         $datakematian = Datakematian::all();
-        return view('admin.datakematian.create', compact('datakematian'));
+        $kecamatans = Kecamatan::get();
+        return view('admin.datakematian.create', compact('datakematian','kecamatans'));
     }
+
+    public function kelurahanList(Request $request)
+    {
+        $datas = Kelurahan::where('kecamatan_id', $request->kecamatan_id)->get();
+
+        return response()->json([
+            "status" => true,
+            "data" => $datas
+        ]);
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -83,8 +97,9 @@ public function cetaksuarti($id)
     public function store(Request $request)
     {
         $rule= [
-            'kelurahan' => 'required',
-            'nama_jenazah' => 'required',
+            'kecamatan_id' => 'required',
+            'kelurahan_id' => 'required',
+            'nama' => 'required',
             'nik' => 'required|unique:datakematian|max:20',
             'nokk' => 'required|unique:datakematian|max:20',
             'gambar' => 'required',
@@ -97,8 +112,9 @@ public function cetaksuarti($id)
         $this->validate($request,$rule);
 
         $datakematian = Datakematian::create([
-            'kelurahan' => $request->kelurahan,
-            'nama_jenazah' => $request->nama_jenazah,
+            'kecamatan_id' => $request->kecamatan_id,
+            'kelurahan_id' => $request->kelurahan_id,
+            'nama' => $request->nama,
             'jenis_kelamin' => $request->jenis_kelamin,        
             'tanggal_kematian' => $request->tanggal_kematian,
             'anak_ke' => $request->anak_ke,
@@ -110,7 +126,7 @@ public function cetaksuarti($id)
         //$datakematian->tags()->attach($request->tags);
           $gambar->move('public/uploads/datakematian/', $new_gambar);
         
-        return redirect()->back()->with('success','Postingan anda berhasil disimpan');
+        return redirect()->route('datakematian.index')->with('success','Postingan anda berhasil disimpan');
     }
 
     /**
@@ -133,7 +149,8 @@ public function cetaksuarti($id)
     public function edit($id)
     {
         $datakematian = Datakematian::findorfail($id);
-        return view('admin.datakematian.edit', compact('datakematian')); 
+        $kecamatans = Kecamatan::get();
+        return view('admin.datakematian.edit', compact('datakematian','kecamatans')); 
     }
 
     /**
@@ -146,8 +163,9 @@ public function cetaksuarti($id)
     public function update(Request $request, $id)
     {
          $this->validate($request, [
-            'kelurahan' => 'required',
-            'nama_jenazah' => 'required',
+            'kecamatan_id' => 'required',
+            'kelurahan_id' => 'required',
+            'nama' => 'required',
         ]);
        
        $datakematian = Datakematian::findorfail($id);
@@ -158,8 +176,9 @@ public function cetaksuarti($id)
         }
 
         $datakematian_data = [
-           'kelurahan' => $request->kelurahan,
-            'nama_jenazah' => $request->nama_jenazah,
+            'kecamatan_id' => $request->kecamatan_id,
+            'kelurahan_id' => $request->kelurahan_id,
+            'nama' => $request->nama,
             'jenis_kelamin' => $request->jenis_kelamin,        
             'tanggal_kematian' => $request->tanggal_kematian,
             'anak_ke' => $request->anak_ke,
@@ -167,9 +186,8 @@ public function cetaksuarti($id)
             'nokk' => $request->nokk,
             'status_keluarga' => $request->status_keluarga,
             'gambar' => 'public/uploads/datakematian/'.$new_gambar,
-            ];      
+        ];      
 
-            
         
         Datakematian::whereId($id)->update($datakematian_data);
  

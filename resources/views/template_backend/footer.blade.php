@@ -22,6 +22,7 @@
   <!-- Template JS File -->
   <script src="{{ asset('public/assets/js/scripts.js ')}}"></script>
   <script src="{{ asset('public/assets/js/custom.js')}}"></script>
+  @stack('scripts')
 
   <!-- Page Specific JS File -->
 </body>

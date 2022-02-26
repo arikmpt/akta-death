@@ -19,14 +19,27 @@
 
 <form action="{{ route('datakematian.store') }}" method="POST" enctype="multipart/form-data">
 @csrf
+
 <div class="form-group">
-    <label>kelurahan </label>
-   <input type="text" class="form-control" name="kelurahan">
+    <label>Kecamatan</label>
+	<select class="form-control select2" name="kecamatan_id" id="kecamatan_id" required>
+		<option value="">Pilih Kecamatan</option>
+		@foreach($kecamatans as $kecamatan)
+			<option value="{{ $kecamatan->id }}">{{ $kecamatan->nama }}</option>
+		@endforeach
+	</select>
+</div>
+
+<div class="form-group">
+    <label>Kelurahan</label>
+	<select class="form-control select2" name="kelurahan_id" id="kelurahan_id" required>
+		<option value="">Pilih Kelurahan</option>
+	</select>
 </div>
 
 <div class="form-group">
     <label>Nama Almarhum Almarhumah </label>
-    <input type="text" class="form-control" name="nama_jenazah">
+    <input type="text" class="form-control" name="nama">
 </div>
 
 <div class="from-group">
@@ -76,4 +89,40 @@
     <button class="btn btn-primary btn-block">Simpan Post</button>
 </div>
 </form>
+
 @endsection  
+@push('scripts')
+	
+<script>
+	$(document).ready(function() {
+
+		$("#kecamatan_id").on('change', function (e) {
+			$.ajax({
+				method: 'POST',
+				headers: {
+					'X-CSRF-Token': "{{ csrf_token() }}"
+				},
+				url: "{{ route('kelurahan.list') }}",
+				data: {
+					kecamatan_id : $(this).val()
+				},
+				success: function(result) {
+					$("#kelurahan_id").empty();
+					$("#kelurahan_id").append(`<option value="">
+						Pilih Kelurahan
+					</option>`);
+
+					result.data.map(v => {
+						$("#kelurahan_id").append(`<option value="${v.id}">
+							${v.nama}
+						</option>`);
+					})
+				},
+				error: function(err){
+					console.log(error)
+				}
+			});
+		})
+	})
+</script>
+@endpush

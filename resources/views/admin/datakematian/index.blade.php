@@ -8,7 +8,7 @@
 		</div>
 	@endif
 	
-	<form class="form" method="get" action="#">
+	<form class="form" method="get" action="{{ route('kematian.search')}}">
 		<div class="form-group w-100 mb-3">
 			<label for="search" class="d-block mr-2">Pencarian</label>
 			<input type="text" name="search" class="form-control w-75 d-inline" id="search" placeholder="Masukkan keyword">
@@ -16,11 +16,6 @@
 		</div>
 	</form>
 <!-- Start kode untuk form pencarian -->
-@if ($message = Session::get('success'))
-<div class="alert alert-success">
-    <p>{{ $message }}</p>
-</div>
-@endif
 
   <div class="row">
 	<form action= "/datakematian" method="GET">
@@ -30,6 +25,7 @@
 	<table class="table table-striped table-hover table-sm table-bordered">
 		<thead>
 			<th>No</th>
+			<th>Kecamatan</th>
 			<th>Kelurahan</th>
 			<th>Nama Almarhum Almarhumah</th>
 			<th>Jenis Kelamin</th>
@@ -46,8 +42,9 @@
 			@foreach ($datakematian as $result => $hasil)
 			<tr>
 				<td>{{ $result + $datakematian->firstitem() }} </td>
-				<td>{{ $hasil->kelurahan }}</td>
-				<td>{{ $hasil->nama_jenazah }}</td>
+				<td>{{ $hasil->kecamatan->nama }}</td>
+				<td>{{ $hasil->kelurahan->nama }}</td>
+				<td>{{ $hasil->nama }}</td>
 				<td>{{ $hasil->jenis_kelamin }}</td>
 				<td>{{ $hasil->tanggal_kematian }}</td>
 				<td>{{ $hasil->anak_ke }}</td>
@@ -61,8 +58,8 @@
 						@method('delete')
 						<a href="{{ route('datakematian.edit', $hasil->id ) }}" class="btn btn-primary btn-sm">Edit</a>
 						<button type="submit" class="btn btn-danger btn-sm">Delete</button></a>
+						<a href="{{ asset( $hasil->gambar ) }}" taget="_blank" class="btn btn-primary btn-sm"><i class="fas fa-print"></i></a>
 					</form>
-					<a href="{{ asset( $hasil->gambar ) }}" taget="_blank" class="btn btn-primary btn-sm"><i class="fas fa-print"></i></a>
 				</td>
 			</tr>
 			@endforeach

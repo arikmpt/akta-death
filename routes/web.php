@@ -25,5 +25,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::any('/kelurahan-search','KelurahanController@search')->name('kelurahan.search');
 
     Route::resource('/datakematian','DatakematianController');
+    Route::any('/datakematian-search','DatakematianController@search')->name('kematian.search');
+    Route::post('/kelurahan-list','DatakematianController@kelurahanList')->name('kelurahan.list');
 
 });
