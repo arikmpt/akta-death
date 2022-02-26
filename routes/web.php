@@ -73,5 +73,6 @@ Route::get('/search', 'BaratkecamatanController@search')->name('search');
 //Route::resource('/september','SeptemberController');
 
 //Route::resource('/user', 'UserController');
+Route::resource('/datakematian','DatakematianController');
 
 });

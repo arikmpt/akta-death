@@ -25,7 +25,6 @@
   <div class="row">
 	<form action= "/datakematian" method="GET">
 	<a href="{{ route('datakematian.create') }}" class="btn btn-info btn-sm">Tambah Akta Kematian</a>
-	<a href="{{ route('cetak-agustus') }}" taget="_blank" class="btn btn-primary btn-sm"><i class="fas fa-print"></i></a>
 <br><br>
 
 	<table class="table table-striped table-hover table-sm table-bordered">
@@ -57,14 +56,13 @@
 				<td>{{ $hasil->status_keluarga }}</td>
 				<td><img src="{{ asset( $hasil->gambar ) }}" class="img-fluid" style="width:100px"></td>
 				<td>
-			<form action="{{ route('datakematian.destroy', $hasil->id ) }}" method="POST"> 
+					<form action="{{ route('datakematian.destroy', $hasil->id ) }}" method="POST"> 
 						@csrf
 						@method('delete')
 						<a href="{{ route('datakematian.edit', $hasil->id ) }}" class="btn btn-primary btn-sm">Edit</a>
-					<button type="submit" class="btn btn-danger btn-sm">Delete</button></a>
-					<a href="{{ route('cetak-suarti', $hasil->id) }}" taget="_blank" class="btn btn-primary btn-sm"><i class="fas fa-print"></i></a>
-					
-			</form>
+						<button type="submit" class="btn btn-danger btn-sm">Delete</button></a>
+					</form>
+					<a href="{{ asset( $hasil->gambar ) }}" taget="_blank" class="btn btn-primary btn-sm"><i class="fas fa-print"></i></a>
 				</td>
 			</tr>
 			@endforeach

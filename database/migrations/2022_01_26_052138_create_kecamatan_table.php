@@ -24,7 +24,7 @@ class CreateKecamatanTable extends Migration
             $table->string('nokk')->nullable();
             $table->string('status_keluarga')->nullable();
             $table->string('gambar')->nullable();
-            $table->foreign('id_kelurahan')->references('id')->on('barat')->onDelete('cascade');
+            // $table->foreign('id_kelurahan')->references('id')->on('barat')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -2,7 +2,7 @@
   <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
 
-         <center><img src="{{asset('public/assets/img/logo.jpg')}}" class="img-responsive" style="margin-left: auto;width:30%;">
+         <center><img src="{{asset('assets/img/logo.jpg')}}" class="img-responsive" style="margin-left: auto;width:30%;">
           <p href="index.html" class="text-white" style="font-size: 20px;"><bold>Akta Kematian Kota Payakumbuh</p></bold>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
@@ -10,9 +10,9 @@
           </div>
 
           <ul class="sidebar-menu">
-              <li class="nav-item dropdown">
+              <li class="nav-item">
                 <br></br>
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Data kematian</span></a>
+                <a href="{{ route('datakematian.index') }}" class="nav-link"><i class="fas fa-columns"></i> <span>Data kematian</span></a>
                 <ul class="dropdown-menu">
                   
                   <a href="{{ route('baratkecamatan.index')}}" class="nav-link"><i class="fas fa-list"></i> <span>Kecamatan barat</span></a>
