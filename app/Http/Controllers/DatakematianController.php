@@ -28,7 +28,7 @@ class DatakematianController extends Controller
     public function search(Request $request)
     {
         $search =$request->get('search');
-        $datakematian = Datakematian::where('kelurahan','LIKE',"%" .$search. "%")->orWhere('nik','LIKE',"%" .$search. "%")->paginate(100);
+        $datakematian = Datakematian::where('nama','LIKE',"%" .$search. "%")->orWhere('nik','LIKE',"%" .$search. "%")->paginate(100);
         return view('admin.datakematian.index',compact('datakematian'));
     }
 
