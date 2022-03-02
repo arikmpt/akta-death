@@ -12,14 +12,14 @@ class KecamatanController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Kecamatan::paginate(100);
+        $data = Kecamatan::paginate(10);
         return view('admin.kecamatan.index', compact('data'));
     }
 
     public function search(Request $request)
     {
         $search =$request->get('search');
-        $data = Kecamatan::where('nama','LIKE',"%" .$search. "%")->paginate(100);
+        $data = Kecamatan::where('nama','LIKE',"%" .$search. "%")->paginate(10);
         return view('admin.kecamatan.index',compact('data'));
     }
 

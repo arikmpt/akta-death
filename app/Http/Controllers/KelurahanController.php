@@ -13,14 +13,14 @@ class KelurahanController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Kelurahan::paginate(100);
+        $data = Kelurahan::paginate(10);
         return view('admin.kelurahan.index', compact('data'));
     }
 
     public function search(Request $request)
     {
         $search =$request->get('search');
-        $data = Kelurahan::where('nama','LIKE',"%" .$search. "%")->paginate(100);
+        $data = Kelurahan::where('nama','LIKE',"%" .$search. "%")->paginate(10);
         return view('admin.kelurahan.index',compact('data'));
     }
 

@@ -28,4 +28,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::any('/datakematian-search','DatakematianController@search')->name('kematian.search');
     Route::post('/kelurahan-list','DatakematianController@kelurahanList')->name('kelurahan.list');
 
+    Route::get('/rekap-data-kematian/{kecamatan_id}', 'RekapDataKematianController@index')->name('rekap.kematian.index');
+    Route::get('/rekap-data-kematian/search/{kecamatan_id}', 'RekapDataKematianController@search')->name('rekap.kematian.search');
 });
